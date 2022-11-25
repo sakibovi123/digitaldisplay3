@@ -26,11 +26,18 @@ class HomePageCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
     return Container(
-      height: 320,
+      height: 330,
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
+        border: Border.all(
+          width: 0.5,
+          color: Color.fromARGB(141, 158, 158, 158),
+        ),
         color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadiusDirectional.only(
+          topEnd: Radius.circular(30),
+          topStart: Radius.circular(30),
+        ),
         boxShadow: [
           BoxShadow(
             offset: Offset(0, 1),

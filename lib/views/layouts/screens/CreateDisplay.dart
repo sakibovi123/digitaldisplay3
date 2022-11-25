@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -77,38 +78,48 @@ class _CreateDisplayState extends State<CreateDisplay> {
               height: 20,
             ),
             Container(
-              child: Stack(
+              child: CarouselSlider.builder(
+                options: CarouselOptions(
+                  height: 330,
+                  enableInfiniteScroll: false,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.8,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                ),
+                itemCount: 6,
+                itemBuilder: ((BuildContext context, int index, int realIndex) {
+                  return Container(
+                    margin: EdgeInsets.only(right: 20),
+                    child: HomePageCard(
+                        shopName: 'Shop Dhanmondi',
+                        displayStyle: 'Display Style 7',
+                        image:
+                            'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+                        width: width,
+                        height: height),
+                  );
+                }),
+              ),
+            ),
+            Container(
+              width: width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  HomePageCard(
-                    shopName: 'Shop Mohakhali',
-                    displayStyle: 'DisplayStyle 7',
-                    image:
-                        'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-                    width: width,
-                    height: height,
-                  ),
-                  Positioned(
-                    left: 0,
-                    top: 120,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.keyboard_arrow_left_outlined,
-                        color: Color.fromARGB(255, 44, 71, 89),
-                        size: 70,
-                      ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.keyboard_arrow_left_outlined,
+                      size: 40,
                     ),
                   ),
-                  Positioned(
-                    right: 0,
-                    top: 120,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        color: Color.fromARGB(255, 44, 71, 89),
-                        size: 70,
-                      ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.keyboard_arrow_right_outlined,
+                      size: 40,
                     ),
                   ),
                 ],
