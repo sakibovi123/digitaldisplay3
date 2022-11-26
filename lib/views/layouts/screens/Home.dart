@@ -2,7 +2,7 @@ import 'package:digitaldisplay3/views/layouts/screens/CreateDisplay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import '../../models/Export.dart';
+import '../../export/Export.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

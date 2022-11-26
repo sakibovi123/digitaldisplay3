@@ -6,4 +6,4 @@ export '../../controllers/UserController.dart';
 export '../../models/DisplayModel.dart';
 export '../layouts/screens/Home.dart';
 export '../layouts/widgets/DisplayCard.dart';
-export '../../views/layouts/screens/CreateDisplay.dart';
+export '../layouts/screens/CreateDisplay.dart';

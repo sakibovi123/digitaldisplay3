@@ -26,7 +26,8 @@ class HomePageCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
     return Container(
-      height: 330,
+      margin: EdgeInsets.only(bottom: 10),
+      height: 340,
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         border: Border.all(
