@@ -98,7 +98,7 @@ class DisplayCard extends StatelessWidget {
               border: Border.all(width: 5),
             ),
             width: width * 0.9,
-            height: height * 0.3,
+            height: 200,
             child: Image.network(
               "https://digital-display.betafore.com$image",
               fit: BoxFit.cover,
