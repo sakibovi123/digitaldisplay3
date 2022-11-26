@@ -117,7 +117,14 @@ class _HomeState extends State<Home> {
                     ),
                     ElevatedButton(
                       style: buttonStyleBlack,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => CreateProduct()),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Create Product',
                       ),

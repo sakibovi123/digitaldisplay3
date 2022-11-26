@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../export/Export.dart';
 
 import '../../../controllers/DisplayController.dart';
 import '../../../controllers/ProductController.dart';
@@ -316,6 +317,42 @@ class _CreateDisplayState extends State<CreateDisplay> {
                       return const CircularProgressIndicator();
                     }
                   }),
+                ),
+              ),
+              Container(
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      style: buttonStyleRed,
+                      onPressed: () {},
+                      child: const Text(
+                        'Dashboard',
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: buttonStyleBlack,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => CreateProduct()),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Create Product',
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: buttonStyleBlack,
+                      onPressed: () {},
+                      child: const Text(
+                        'Logout',
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
