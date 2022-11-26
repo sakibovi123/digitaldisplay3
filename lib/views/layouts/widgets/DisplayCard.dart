@@ -30,14 +30,8 @@ class DisplayCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
     return Container(
-<<<<<<< HEAD
-      margin: EdgeInsets.only(bottom: 10),
-      height: 340,
-      padding: EdgeInsets.all(5.0),
-=======
       height: 330,
       padding: const EdgeInsets.all(5.0),
->>>>>>> ac0a26abcf417be446370be19fcba8a382669d09
       decoration: BoxDecoration(
         border: Border.all(
           width: 0.5,
@@ -104,7 +98,7 @@ class DisplayCard extends StatelessWidget {
               border: Border.all(width: 5),
             ),
             width: width * 0.9,
-            height: height * 0.3,
+            height: 200,
             child: Image.network(
               "https://digital-display.betafore.com$image",
               fit: BoxFit.cover,
