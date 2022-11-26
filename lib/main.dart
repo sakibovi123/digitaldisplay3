@@ -1,3 +1,4 @@
+import 'package:digitaldisplay3/views/layouts/screens/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -24,10 +25,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Home(),
+        home: const LoginScreen(),
 
         routes: {
           Home.routeName: (ctx) => const Home(),
+          LoginScreen.routeName: (ctx) => const LoginScreen(),
         },
       ),
     );
