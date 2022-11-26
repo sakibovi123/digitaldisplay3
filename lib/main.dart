@@ -1,9 +1,9 @@
-import 'package:digitaldisplay3/views/layouts/screens/Login.dart';
+import 'package:digitaldisplay3/views/layouts/mobile_screens/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
-import 'views/models/Export.dart';
+import 'views/export/Export.dart';
 
 void main() {
   runApp(MyApp());

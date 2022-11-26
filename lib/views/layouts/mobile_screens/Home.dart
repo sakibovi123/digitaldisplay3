@@ -1,9 +1,7 @@
-import 'package:digitaldisplay3/views/layouts/screens/CreateDisplay.dart';
+import 'package:digitaldisplay3/views/layouts/mobile_screens/CreateDisplay.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import '../../export/Export.dart';
 import 'package:provider/provider.dart';
-import '../../models/Export.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "/home";
