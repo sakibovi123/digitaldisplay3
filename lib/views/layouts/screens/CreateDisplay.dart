@@ -1,9 +1,5 @@
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class CreateDisplay extends StatefulWidget {
@@ -34,14 +30,14 @@ class _CreateDisplayState extends State<CreateDisplay> {
       appBar: AppBar(
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: ElevatedButton(
               style: buttonStyleRed,
               onPressed: () {
                 Navigator.pop(context);
               },
               child: Row(
-                children: [
+                children: const [
                   Icon(
                     Icons.arrow_back_ios_new_outlined,
                     size: 16,
@@ -58,7 +54,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
             ),
           ),
         ],
-        title: Text(
+        title: const Text(
           'DIGITAL DISPLAY GENERATOR',
           style: TextStyle(
             fontSize: 16,
@@ -67,14 +63,14 @@ class _CreateDisplayState extends State<CreateDisplay> {
         ),
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         toolbarHeight: 40,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -85,15 +81,17 @@ class _CreateDisplayState extends State<CreateDisplay> {
                   aspectRatio: 16 / 9,
                   viewportFraction: 0.8,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayInterval: const Duration(seconds: 3),
                 ),
                 itemCount: 6,
                 itemBuilder: ((BuildContext context, int index, int realIndex) {
                   return Container(
-                    margin: EdgeInsets.only(right: 20),
-                    child: HomePageCard(
+                    margin: const EdgeInsets.only(right: 20),
+                    child: DisplayCard(
+                        id: 1,
                         shopName: 'Shop Dhanmondi',
-                        displayStyle: 'Display Style 7',
+                        displayName: 'Display Style 7',
+                        templateName: "Template name",
                         image:
                             'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
                         width: width,
@@ -110,14 +108,14 @@ class _CreateDisplayState extends State<CreateDisplay> {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.keyboard_arrow_left_outlined,
                       size: 40,
                     ),
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.keyboard_arrow_right_outlined,
                       size: 40,
                     ),
