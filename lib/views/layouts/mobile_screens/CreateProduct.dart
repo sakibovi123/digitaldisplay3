@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../../export/Export.dart';
+import 'package:flutter/foundation.dart';
 
 class CreateProduct extends StatefulWidget {
   const CreateProduct({super.key});
@@ -9,6 +11,38 @@ class CreateProduct extends StatefulWidget {
 }
 
 class _CreateProductState extends State<CreateProduct> {
+  List listItems = [];
+  var _currentMax = 3;
+  var _numberOfDocuments = 10;
+  ScrollController _scrollController = ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    listItems = List.generate(3, (index) => ProductCard(index: index));
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        if (listItems.length < _numberOfDocuments) {
+          loadMoreItems();
+        }
+        print(listItems.length);
+      }
+    });
+  }
+
+  loadMoreItems() {
+    for (int i = 0; i < _currentMax; i++) {
+      listItems.add(ProductCard(index: i));
+    }
+    _currentMax = _currentMax + 3;
+    if (_currentMax > _numberOfDocuments) {
+      int length = _currentMax - _numberOfDocuments;
+      _currentMax = _currentMax - length;
+      listItems.length = _currentMax;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -64,18 +98,19 @@ class _CreateProductState extends State<CreateProduct> {
         toolbarHeight: 40,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             left: 10,
             right: 10,
           ),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Container(
-                height: 530,
+                height: 535,
                 width: width,
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -85,12 +120,13 @@ class _CreateProductState extends State<CreateProduct> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
+                    // Image container
                     Container(
                       height: 150,
-                      width: 200,
+                      width: width * 0.9,
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 0.5,
@@ -102,15 +138,24 @@ class _CreateProductState extends State<CreateProduct> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Flexible(
                       child: Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 10,
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 10,
+                            const Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Product Name:',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -120,7 +165,7 @@ class _CreateProductState extends State<CreateProduct> {
                                 ),
                               ),
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: InputBorder.none,
@@ -133,18 +178,18 @@ class _CreateProductState extends State<CreateProduct> {
                     ),
                     Flexible(
                       child: Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 10,
                         ),
                         child: Column(
                           children: [
-                            Align(
+                            const Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 'Price*:',
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -155,7 +200,7 @@ class _CreateProductState extends State<CreateProduct> {
                                 ),
                               ),
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: InputBorder.none,
@@ -168,21 +213,21 @@ class _CreateProductState extends State<CreateProduct> {
                     ),
                     Flexible(
                       child: Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 10,
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
-                            Align(
+                            const Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 'Discount Price:',
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -193,7 +238,7 @@ class _CreateProductState extends State<CreateProduct> {
                                 ),
                               ),
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: InputBorder.none,
@@ -206,21 +251,21 @@ class _CreateProductState extends State<CreateProduct> {
                     ),
                     Flexible(
                       child: Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 10,
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
-                            Align(
+                            const Align(
                               alignment: Alignment.topLeft,
                               child: Text(
                                 'Badge',
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -231,7 +276,7 @@ class _CreateProductState extends State<CreateProduct> {
                                 ),
                               ),
                               child: TextFormField(
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: InputBorder.none,
@@ -245,23 +290,24 @@ class _CreateProductState extends State<CreateProduct> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           right: 10,
                           bottom: 5,
                         ),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 241, 245, 248),
+                            backgroundColor:
+                                const Color.fromARGB(255, 241, 245, 248),
                             shape: const StadiumBorder(),
                             minimumSize: const Size(50, 40),
-                            side: BorderSide(
+                            side: const BorderSide(
                               width: 0.5,
                               color: Colors.grey,
                             ),
                           ),
                           onPressed: () {},
-                          child: Text(
-                            'Add Text',
+                          child: const Text(
+                            'Add Product',
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -272,6 +318,72 @@ class _CreateProductState extends State<CreateProduct> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 15,
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  style: buttonStyleBlack,
+                  onPressed: () {},
+                  child: Text('Create Product'),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  controller: _scrollController,
+                  itemCount: 6,
+                  itemBuilder: ((context, index) {
+                    return ProductCard(
+                      index: index,
+                    );
+                  })),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: width * 0.9,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      style: buttonStyleRed,
+                      onPressed: () {},
+                      child: const Text(
+                        'Dashboard',
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: buttonStyleBlack,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => CreateProduct()),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Create Product',
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: buttonStyleBlack,
+                      onPressed: () {},
+                      child: const Text(
+                        'Logout',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // SizedBox(
+              //   height: 20,
+              // ),
             ],
           ),
         ),
