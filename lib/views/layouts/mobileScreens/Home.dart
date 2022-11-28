@@ -1,4 +1,4 @@
-import 'package:digitaldisplay3/views/layouts/mobile_screens/CreateDisplay.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateDisplay.dart';
 import 'package:flutter/material.dart';
 import '../../export/Export.dart';
 import 'package:provider/provider.dart';

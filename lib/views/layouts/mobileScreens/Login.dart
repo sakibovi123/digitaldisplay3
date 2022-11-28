@@ -1,5 +1,5 @@
 import 'package:digitaldisplay3/controllers/UserController.dart';
-import 'package:digitaldisplay3/views/layouts/mobile_screens/Home.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
