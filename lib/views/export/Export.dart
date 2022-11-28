@@ -10,3 +10,6 @@ export '../layouts/mobile_screens/CreateDisplay.dart';
 export '../layouts/mobile_screens/EditDisplay.dart';
 export '../layouts/mobile_screens/CreateProduct.dart';
 export '../layouts/widgets/ProductCard.dart';
+export '../layouts/tv_screens/HomeTv.dart';
+export '../layouts/tv_screens/CreateDisplayTv.dart';
+export '../layouts/tv_screens/CreateProductTv.dart';

@@ -11,37 +11,37 @@ class CreateProduct extends StatefulWidget {
 }
 
 class _CreateProductState extends State<CreateProduct> {
-  List listItems = [];
-  var _currentMax = 3;
-  var _numberOfDocuments = 10;
-  ScrollController _scrollController = ScrollController();
-  @override
-  void initState() {
-    super.initState();
-    listItems = List.generate(3, (index) => ProductCard(index: index));
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        if (listItems.length < _numberOfDocuments) {
-          loadMoreItems();
-        }
-        print(listItems.length);
-      }
-    });
-  }
+  // List listItems = [];
+  // var _currentMax = 3;
+  // var _numberOfDocuments = 10;
+  // ScrollController _scrollController = ScrollController();
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   listItems = List.generate(3, (index) => ProductCard(index: index));
+  //   _scrollController.addListener(() {
+  //     if (_scrollController.position.pixels ==
+  //         _scrollController.position.maxScrollExtent) {
+  //       if (listItems.length < _numberOfDocuments) {
+  //         loadMoreItems();
+  //       }
+  //       print(listItems.length);
+  //     }
+  //   });
+  // }
 
-  loadMoreItems() {
-    for (int i = 0; i < _currentMax; i++) {
-      listItems.add(ProductCard(index: i));
-    }
-    _currentMax = _currentMax + 3;
-    if (_currentMax > _numberOfDocuments) {
-      int length = _currentMax - _numberOfDocuments;
-      _currentMax = _currentMax - length;
-      listItems.length = _currentMax;
-    }
-    setState(() {});
-  }
+  // loadMoreItems() {
+  //   for (int i = 0; i < _currentMax; i++) {
+  //     listItems.add(ProductCard(index: i));
+  //   }
+  //   _currentMax = _currentMax + 3;
+  //   if (_currentMax > _numberOfDocuments) {
+  //     int length = _currentMax - _numberOfDocuments;
+  //     _currentMax = _currentMax - length;
+  //     listItems.length = _currentMax;
+  //   }
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class _CreateProductState extends State<CreateProduct> {
                 height: 25,
               ),
               Container(
-                height: 535,
+                height: 375,
                 width: width,
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -118,202 +118,220 @@ class _CreateProductState extends State<CreateProduct> {
                     color: Colors.grey,
                   ),
                 ),
-                child: Column(
+                child: Row(
                   children: [
                     const SizedBox(
                       height: 5,
                     ),
                     // Image container
                     Container(
-                      height: 150,
-                      width: width * 0.9,
+                      height: 370,
+                      width: width * 0.5,
                       decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                        ),
                         border: Border.all(
                           width: 0.5,
                           color: Colors.grey,
                         ),
                       ),
-                      child: Image.network(
-                        'https://media.istockphoto.com/id/1309352410/photo/cheeseburger-with-tomato-and-lettuce-on-wooden-board.jpg?s=612x612&w=0&k=20&c=lfsA0dHDMQdam2M1yvva0_RXfjAyp4gyLtx4YUJmXgg=',
-                        fit: BoxFit.cover,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: UnconstrainedBox(
+                          child: ElevatedButton(
+                            style: buttonStyleRed,
+                            onPressed: () {},
+                            child: Text('Add image'),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: width * 0.4,
+                      child: Column(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                children: [
+                                  const Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Product Name:',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                children: [
+                                  const Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Price*:',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Discount Price:',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Badge',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                right: 10,
+                                bottom: 5,
+                              ),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 241, 245, 248),
+                                  shape: const StadiumBorder(),
+                                  minimumSize: const Size(50, 40),
+                                  side: const BorderSide(
+                                    width: 0.5,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                onPressed: () {},
+                                child: const Text(
+                                  'Add Product',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
                       height: 5,
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
-                        child: Column(
-                          children: [
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Product Name:',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 0.5,
-                                ),
-                              ),
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
-                        child: Column(
-                          children: [
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Price*:',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 0.5,
-                                ),
-                              ),
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Discount Price:',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 0.5,
-                                ),
-                              ),
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Badge',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 0.5,
-                                ),
-                              ),
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          right: 10,
-                          bottom: 5,
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 241, 245, 248),
-                            shape: const StadiumBorder(),
-                            minimumSize: const Size(50, 40),
-                            side: const BorderSide(
-                              width: 0.5,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Add Product',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -332,16 +350,27 @@ class _CreateProductState extends State<CreateProduct> {
               SizedBox(
                 height: 15,
               ),
-              ListView.builder(
+              Container(
+                width: width,
+                height: 700,
+                child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  controller: _scrollController,
-                  itemCount: 6,
+                  itemCount: 8,
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 20,
+                    mainAxisExtent: 300,
+                    mainAxisSpacing: 30,
+                    childAspectRatio: 16 / 9,
+                  ),
                   itemBuilder: ((context, index) {
                     return ProductCard(
-                      index: index,
+                      index: 2,
                     );
-                  })),
+                  }),
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),

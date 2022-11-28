@@ -6,7 +6,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = 400;
     final ButtonStyle buttonStyleBlack = ElevatedButton.styleFrom(
       backgroundColor: const Color(0xFF111111),
       shape: const StadiumBorder(),
@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
     );
     return Container(
       width: width,
-      height: 300,
+      height: 320,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -92,10 +92,11 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Container(
+              alignment: Alignment.center,
               width: width * 0.95,
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              height: 90,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     alignment: Alignment.center,
@@ -104,8 +105,8 @@ class ProductCard extends StatelessWidget {
                       vertical: 5,
                     ),
                     margin: EdgeInsets.only(left: 3),
-                    height: 60,
-                    width: width * 0.6,
+                    height: 40,
+                    width: 200,
                     color: Colors.white.withOpacity(0.8),
                     child: Text(
                       'Lorem Ipsum',
