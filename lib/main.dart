@@ -1,3 +1,4 @@
+import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
 import 'package:digitaldisplay3/views/layouts/mobileScreens/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         routes: {
           Home.routeName: (ctx) => const Home(),
           LoginScreen.routeName: (ctx) => const LoginScreen(),
+          CreateProduct.routeName: (ctx) => const CreateProduct()
         },
       ),
     );

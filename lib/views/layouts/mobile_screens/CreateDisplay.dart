@@ -4,10 +4,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../export/Export.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../controllers/DisplayController.dart';
 import '../../../controllers/ProductController.dart';
-import 'package:image_picker/image_picker.dart';
 
 class CreateDisplay extends StatefulWidget {
   const CreateDisplay({super.key});
@@ -19,22 +20,13 @@ class CreateDisplay extends StatefulWidget {
 class _CreateDisplayState extends State<CreateDisplay> {
   final ImagePicker picker = ImagePicker();
 
-  int? isSelected;
+  File? catalogImage;
 
+  File? _catalogVideo;
   String _name = "";
   String _category = "";
   String _templateName = "";
-  File? catalogImage;
-  File? _catalogVideo;
   List<int> productIds = [];
-
-  @override
-  void initState() {
-    Provider.of<DisplayController>(context, listen: false).getDisplays();
-    Provider.of<ProductController>(context, listen: false).getProducts();
-    super.initState();
-  }
-
   final _form = GlobalKey<FormState>();
 
   void _addDisplay() async {
@@ -82,6 +74,14 @@ class _CreateDisplayState extends State<CreateDisplay> {
     }
   }
 
+  @override
+  void initState() {
+    Provider.of<DisplayController>(context, listen: false).getDisplays();
+    Provider.of<ProductController>(context, listen: false).getProducts();
+    super.initState();
+  }
+
+  int? isSelected;
   CarouselController controller = CarouselController();
   bool _init = true;
   bool _isLoadingDisplays = false;
@@ -109,7 +109,6 @@ class _CreateDisplayState extends State<CreateDisplay> {
     shape: const StadiumBorder(),
     minimumSize: const Size(50, 40),
   );
-
   final ButtonStyle imgPickerStyle = ElevatedButton.styleFrom(
     backgroundColor: Colors.grey,
   );
@@ -159,6 +158,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
         toolbarHeight: 40,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
           margin: const EdgeInsets.only(left: 5, right: 5, bottom: 15),
           child: Form(
@@ -175,7 +175,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                       height: 330,
                       enableInfiniteScroll: false,
                       aspectRatio: 16 / 9,
-                      viewportFraction: 0.8,
+                      viewportFraction: 0.5,
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 3),
                     ),
@@ -232,73 +232,82 @@ class _CreateDisplayState extends State<CreateDisplay> {
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   width: width,
-                  height: 280,
+                  height: 210,
                   color: const Color.fromARGB(255, 67, 62, 68),
                   child: Column(
                     children: [
-                      Flexible(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Name*:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Name*:',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  TextFormField(
+                                    validator: (v) {
+                                      if (v!.isEmpty) {
+                                        return "Please Enter a valid name";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    onSaved: (value) {
+                                      _name = value!;
+                                    },
+                                    decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              TextFormField(
-                                validator: (v) {
-                                  if (v!.isEmpty) {
-                                    return "Please Enter a valid name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                onSaved: (value) {
-                                  _name = value!;
-                                },
-                                decoration: const InputDecoration(
-                                    filled: true, fillColor: Colors.white),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Banner Text:',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  TextFormField(
+                                    validator: (v) {
+                                      if (v!.isEmpty) {
+                                        return "Please Enter a valid name";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    onSaved: (value) {
+                                      _templateName = value!;
+                                    },
+                                    decoration: const InputDecoration(
+                                        filled: true, fillColor: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Flexible(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Template Name:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              TextFormField(
-                                validator: (v) {
-                                  if (v!.isEmpty) {
-                                    return "Please Enter a valid name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                onSaved: (value) {
-                                  _templateName = value!;
-                                },
-                                decoration: const InputDecoration(
-                                    filled: true, fillColor: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
+                      SizedBox(
+                        height: 30,
                       ),
                       Flexible(
                         child: Container(
@@ -336,8 +345,55 @@ class _CreateDisplayState extends State<CreateDisplay> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
+                Row(
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 120,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: imgPickerStyle,
+                            onPressed: () {
+                              _getImageFromGallery();
+                            },
+                            child: catalogImage != null
+                                ? Image.file(
+                                    catalogImage!,
+                                    fit: BoxFit.fill,
+                                    width: double.infinity,
+                                  )
+                                : Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 120,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: imgPickerStyle,
+                            onPressed: () {
+                              _getVideoFromGallery();
+                            },
+                            child: catalogImage != null
+                                ? Image.file(
+                                    catalogImage!,
+                                    fit: BoxFit.fill,
+                                    width: double.infinity,
+                                  )
+                                : Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 25,
@@ -351,6 +407,9 @@ class _CreateDisplayState extends State<CreateDisplay> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Consumer<ProductController>(
@@ -360,6 +419,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                         return Container(
                             height: height * 0.3,
                             child: ListView.builder(
+                              physics: ClampingScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: value.products[0].results!.length,
                               itemBuilder: (context, index) {
@@ -415,75 +475,41 @@ class _CreateDisplayState extends State<CreateDisplay> {
                     }),
                   ),
                 ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 120,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: imgPickerStyle,
-                            onPressed: () {
-                              _getImageFromGallery();
-                            },
-                            child: catalogImage != null
-                                ? Image.file(
-                                    catalogImage!,
-                                    fit: BoxFit.fill,
-                                    width: double.infinity,
-                                  )
-                                : Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
-                          ),
+                Container(
+                  width: width * 0.9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: buttonStyleRed,
+                        onPressed: () {},
+                        child: const Text(
+                          'Dashboard',
                         ),
                       ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 120,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: imgPickerStyle,
-                            onPressed: () {
-                              _getVideoFromGallery();
-                            },
-                            child: catalogImage != null
-                                ? Image.file(
-                                    catalogImage!,
-                                    fit: BoxFit.fill,
-                                    width: double.infinity,
-                                  )
-                                : Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
-                          ),
+                      ElevatedButton(
+                        style: buttonStyleBlack,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => CreateProduct()),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Create Product',
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _addDisplay();
-                            // displayController.createDisplay(
-                            //     "name", "category", "templateName", "1");
-                          },
-                          child: Text("Add Display"),
-                          style: buttonStyleBlack,
+                      ElevatedButton(
+                        style: buttonStyleBlack,
+                        onPressed: () {},
+                        child: const Text(
+                          'Logout',
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

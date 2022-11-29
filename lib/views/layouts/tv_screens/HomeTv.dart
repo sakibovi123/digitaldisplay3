@@ -1,19 +1,18 @@
-import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateDisplay.dart';
-import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
+import 'package:digitaldisplay3/views/layouts/mobile_screens/CreateDisplay.dart';
 import 'package:flutter/material.dart';
 import '../../export/Export.dart';
 import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
+class HomeTv extends StatefulWidget {
   static const routeName = "/home";
 
-  const Home({super.key});
+  const HomeTv({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeTv> createState() => _HomeTvState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeTvState extends State<HomeTv> {
   bool _init = true;
   bool _isLoadingDisplays = false;
 
@@ -59,7 +58,7 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               const SizedBox(
-                height: 30,
+                height: 50,
               ),
               Align(
                 alignment: Alignment.topRight,
@@ -80,13 +79,13 @@ class _HomeState extends State<Home> {
               ),
               Expanded(
                 child: GridView.builder(
+                  shrinkWrap: true,
                   itemCount: displays[0].results!.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    crossAxisSpacing: 20,
-                    mainAxisExtent: 330,
-                    mainAxisSpacing: 30,
-                    childAspectRatio: 16 / 9,
+                    crossAxisSpacing: 150,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 5 / 4,
                   ),
                   itemBuilder: ((context, index) {
                     return DisplayCard(
@@ -122,7 +121,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => const CreateProduct()),
+                            builder: ((context) => CreateProduct()),
                           ),
                         );
                       },

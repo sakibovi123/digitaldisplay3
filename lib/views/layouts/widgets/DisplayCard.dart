@@ -30,6 +30,7 @@ class DisplayCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
     return Container(
+      width: MediaQuery.of(context).size.width * 0.5,
       height: 330,
       padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
