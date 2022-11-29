@@ -339,9 +339,9 @@ class _CreateProductTvState extends State<CreateProductTv> {
                   itemBuilder: ((context, index) {
                     return Column(
                       children: [
-                        ProductCard(
-                          index: index,
-                        ),
+                        // ProductCard(
+                        //   index: index,
+                        // ),
                         SizedBox(
                           height: 10,
                         ),

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final int index;
-  const ProductCard({super.key, required this.index});
+  final int id;
+  final String name;
+  final String price;
+  final String image;
+  const ProductCard(
+      {super.key,
+      required this.id,
+      required this.name,
+      required this.price,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +28,11 @@ class ProductCard extends StatelessWidget {
     );
     return Container(
       width: width,
-      height: 320,
+      height: 330,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
-            'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-          ),
+          image: NetworkImage('https://digital-display.betafore.com/$image'),
         ),
       ),
       child: Container(
@@ -55,9 +61,9 @@ class ProductCard extends StatelessWidget {
                           height: 80,
                           width: 75,
                           child: Text(
-                            '\$25',
+                            '\$${price}',
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 20,
                               color: Colors.white,
                             ),
                           ),
@@ -109,7 +115,7 @@ class ProductCard extends StatelessWidget {
                     width: 200,
                     color: Colors.white.withOpacity(0.8),
                     child: Text(
-                      'Lorem Ipsum',
+                      name,
                       style: TextStyle(fontSize: 20),
                     ),
                   ),

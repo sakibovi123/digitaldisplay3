@@ -11,14 +11,14 @@ import 'package:flutter/rendering.dart';
 import '../../export/Export.dart';
 import 'package:flutter/foundation.dart';
 
-class CreateProduct extends StatefulWidget {
-  const CreateProduct({super.key});
+class EditProduct extends StatefulWidget {
+  const EditProduct({super.key});
 
   @override
-  State<CreateProduct> createState() => _CreateProductState();
+  State<EditProduct> createState() => _EditProductState();
 }
 
-class _CreateProductState extends State<CreateProduct> {
+class _EditProductState extends State<EditProduct> {
   final ImagePicker picker = ImagePicker();
   @override
   void initState() {
@@ -119,7 +119,7 @@ class _CreateProductState extends State<CreateProduct> {
           ),
         ],
         title: const Text(
-          'CREATE PRODUCT',
+          'EDIT PRODUCT',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,

@@ -1,3 +1,4 @@
+import 'package:digitaldisplay3/views/export/Export.dart';
 import 'package:flutter/material.dart';
 
 class DisplayCard extends StatelessWidget {
@@ -114,7 +115,14 @@ class DisplayCard extends StatelessWidget {
               children: [
                 ElevatedButton(
                   style: buttonStyleBlack,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => EditProduct()),
+                      ),
+                    );
+                  },
                   child: Row(
                     children: const [
                       Icon(
