@@ -13,7 +13,7 @@ import '../../export/Export.dart';
 import 'package:flutter/foundation.dart';
 
 class EditProduct extends StatefulWidget {
-  static var routeName;
+  static const routeName = "/edit-product";
 
   const EditProduct({super.key});
 
@@ -81,6 +81,15 @@ class _EditProductState extends State<EditProduct> {
 
   @override
   Widget build(BuildContext context) {
+    final productId = ModalRoute.of(context)!.settings.arguments;
+    final product = Provider.of<ProductController>(context)
+        .productDetails(productId as int);
+    final products = Provider.of<ProductController>(context).products;
+    final productName = product.name;
+    final productPrice = product.price;
+    final salePrice = product.salePrice;
+    final productImg = product.image;
+
     double width = MediaQuery.of(context).size.width;
     final ButtonStyle buttonStyleBlack = ElevatedButton.styleFrom(
       backgroundColor: const Color(0xFF111111),
@@ -122,7 +131,7 @@ class _EditProductState extends State<EditProduct> {
           ),
         ],
         title: const Text(
-          'EDIT PRODUCT',
+          'CREATE PRODUCT',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -168,8 +177,7 @@ class _EditProductState extends State<EditProduct> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                            image: NetworkImage("${product.image}"),
                           ),
                           border: Border.all(
                             width: 0.5,

@@ -116,12 +116,8 @@ class DisplayCard extends StatelessWidget {
                 ElevatedButton(
                   style: buttonStyleBlack,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => EditProduct()),
-                      ),
-                    );
+                    Navigator.of(context)
+                        .pushNamed(EditDisplay.routeName, arguments: id);
                   },
                   child: Row(
                     children: const [

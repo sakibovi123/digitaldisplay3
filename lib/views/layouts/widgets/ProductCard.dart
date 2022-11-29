@@ -1,3 +1,4 @@
+import 'package:digitaldisplay3/views/export/Export.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -123,7 +124,10 @@ class ProductCard extends StatelessWidget {
                     margin: EdgeInsets.only(right: 5),
                     child: ElevatedButton(
                       style: buttonStyleBlack,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(EditProduct.routeName, arguments: id);
+                      },
                       child: Text('Edit product'),
                     ),
                   ),

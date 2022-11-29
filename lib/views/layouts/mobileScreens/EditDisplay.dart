@@ -12,6 +12,7 @@ import '../../../controllers/DisplayController.dart';
 import '../../../controllers/ProductController.dart';
 
 class EditDisplay extends StatefulWidget {
+  static const routeName = "/edit-display";
   const EditDisplay({super.key});
 
   @override
@@ -36,11 +37,11 @@ class _EditDisplayState extends State<EditDisplay> {
       return;
     }
     _form.currentState!.save();
-    bool create = await Provider.of<DisplayController>(context, listen: false)
-        .addDisplay(_name, _category, _templateName, catalogImage!,
+    bool edit = await Provider.of<DisplayController>(context, listen: false)
+        .editDisplay(_name, _category, _templateName, catalogImage!,
             _catalogVideo!, productIds);
-    if (create) {
-      print(create);
+    if (edit) {
+      print(edit);
       showDialog(
           context: context,
           builder: (context) {
@@ -115,6 +116,16 @@ class _EditDisplayState extends State<EditDisplay> {
   );
 
   Widget build(BuildContext context) {
+    final displayId = ModalRoute.of(context)!.settings.arguments;
+    final display =
+        Provider.of<DisplayController>(context).singleDisplay(displayId as int);
+
+    final displayName = display.name!;
+    final categoryName = display.category!;
+    final templateName = display.templateName!;
+    final _productId = display.products![0].id!;
+    final productImage = display.products![0].image!;
+
     final displays = Provider.of<DisplayController>(context).displays;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -255,6 +266,7 @@ class _EditDisplayState extends State<EditDisplay> {
                                     height: 5,
                                   ),
                                   TextFormField(
+                                    initialValue: displayName,
                                     validator: (v) {
                                       if (v!.isEmpty) {
                                         return "Please Enter a valid name";
@@ -288,6 +300,7 @@ class _EditDisplayState extends State<EditDisplay> {
                                   ),
                                   const SizedBox(height: 5),
                                   TextFormField(
+                                    initialValue: templateName,
                                     validator: (v) {
                                       if (v!.isEmpty) {
                                         return "Please Enter a valid name";
@@ -324,6 +337,7 @@ class _EditDisplayState extends State<EditDisplay> {
                               ),
                               const SizedBox(height: 5),
                               TextFormField(
+                                initialValue: categoryName,
                                 validator: (v) {
                                   if (v!.isEmpty) {
                                     return "Please Enter a valid name";

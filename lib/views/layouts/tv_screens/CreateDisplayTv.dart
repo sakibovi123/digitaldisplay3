@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

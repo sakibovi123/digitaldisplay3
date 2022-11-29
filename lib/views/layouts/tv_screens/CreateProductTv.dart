@@ -1,3 +1,4 @@
+import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../export/Export.dart';

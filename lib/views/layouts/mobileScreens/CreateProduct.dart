@@ -12,6 +12,7 @@ import '../../export/Export.dart';
 import 'package:flutter/foundation.dart';
 
 class CreateProduct extends StatefulWidget {
+  static const routeName = "/create_-product";
   const CreateProduct({super.key});
 
   @override
@@ -62,7 +63,7 @@ class _CreateProductState extends State<CreateProduct> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Failed to create display!"),
+              title: Text("Failed to create product!"),
               actions: [
                 ElevatedButton(
                   child: const Text("Return"),
@@ -335,54 +336,6 @@ class _CreateProductState extends State<CreateProduct> {
                                 ),
                               ),
                             ),
-                            Flexible(
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        'Badge',
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.grey,
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return "Please Enter Valid Name";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                        onSaved: (value) {
-                                          _price = value as String;
-                                        },
-                                        decoration: const InputDecoration(
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                             Align(
                               alignment: Alignment.centerRight,
                               child: Container(
@@ -401,7 +354,9 @@ class _CreateProductState extends State<CreateProduct> {
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _createProduct();
+                                  },
                                   child: const Text(
                                     'Add Product',
                                     style: TextStyle(
@@ -414,19 +369,20 @@ class _CreateProductState extends State<CreateProduct> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
+
                 Container(
                   width: width,
                   height: 700,
@@ -450,7 +406,7 @@ class _CreateProductState extends State<CreateProduct> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -460,7 +416,9 @@ class _CreateProductState extends State<CreateProduct> {
                     children: [
                       ElevatedButton(
                         style: buttonStyleRed,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(Home.routeName);
+                        },
                         child: const Text(
                           'Dashboard',
                         ),
@@ -468,12 +426,8 @@ class _CreateProductState extends State<CreateProduct> {
                       ElevatedButton(
                         style: buttonStyleBlack,
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => CreateProduct()),
-                            ),
-                          );
+                          Navigator.of(context)
+                              .pushNamed(CreateProduct.routeName);
                         },
                         child: const Text(
                           'Create Product',
