@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../export/Export.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../controllers/DisplayController.dart';
 import '../../../controllers/ProductController.dart';
@@ -14,6 +19,62 @@ class EditDisplay extends StatefulWidget {
 }
 
 class _EditDisplayState extends State<EditDisplay> {
+  final ImagePicker picker = ImagePicker();
+
+  File? catalogImage;
+
+  File? _catalogVideo;
+  String _name = "";
+  String _category = "";
+  String _templateName = "";
+  List<int> productIds = [];
+  final _form = GlobalKey<FormState>();
+
+  void _addDisplay() async {
+    var isValid = _form.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _form.currentState!.save();
+    bool create = await Provider.of<DisplayController>(context, listen: false)
+        .addDisplay(_name, _category, _templateName, catalogImage!,
+            _catalogVideo!, productIds);
+    if (create) {
+      print(create);
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Created"),
+              actions: [
+                ElevatedButton(
+                  child: const Text("Return"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Failed to create display!"),
+              actions: [
+                ElevatedButton(
+                  child: const Text("Return"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
+    }
+  }
+
   @override
   void initState() {
     Provider.of<DisplayController>(context, listen: false).getDisplays();
@@ -22,7 +83,6 @@ class _EditDisplayState extends State<EditDisplay> {
   }
 
   int? isSelected;
-  List<int> productIds = [];
   CarouselController controller = CarouselController();
   bool _init = true;
   bool _isLoadingDisplays = false;
@@ -48,7 +108,10 @@ class _EditDisplayState extends State<EditDisplay> {
     // fixedSize: ,
     backgroundColor: const Color(0xFFc3232a),
     shape: const StadiumBorder(),
-    minimumSize: const Size(30, 20),
+    minimumSize: const Size(50, 40),
+  );
+  final ButtonStyle imgPickerStyle = ElevatedButton.styleFrom(
+    backgroundColor: Colors.grey,
   );
 
   Widget build(BuildContext context) {
@@ -96,233 +159,382 @@ class _EditDisplayState extends State<EditDisplay> {
         toolbarHeight: 40,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
           margin: const EdgeInsets.only(left: 5, right: 5, bottom: 15),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                child: CarouselSlider.builder(
-                  carouselController: controller,
-                  options: CarouselOptions(
-                    height: 330,
-                    enableInfiniteScroll: false,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 0.8,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                  ),
-                  itemCount: 6,
-                  itemBuilder:
-                      ((BuildContext context, int index, int realIndex) {
-                    return Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      child: DisplayCard(
-                        id: displays[0].results![index].id!,
-                        displayName: displays[0].results![index].name!,
-                        templateName: displays[0].results![index].templateName!,
-                        image: displays[0].results![index].catalogs![0].image!,
-                        shopName: 'Shop Mohakhali',
-                        height: height,
-                        width: width,
-                      ),
-                    );
-                  }),
+          child: Form(
+            key: _form,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              Container(
-                width: width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        controller.previousPage();
-                      },
-                      icon: const Icon(
-                        Icons.keyboard_arrow_left_outlined,
-                        size: 40,
-                      ),
+                Container(
+                  child: CarouselSlider.builder(
+                    carouselController: controller,
+                    options: CarouselOptions(
+                      height: 330,
+                      enableInfiniteScroll: false,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.5,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        controller.nextPage();
-                      },
-                      icon: const Icon(
-                        Icons.keyboard_arrow_right_outlined,
-                        size: 40,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                width: width,
-                height: 280,
-                color: const Color.fromARGB(255, 67, 62, 68),
-                child: Column(
-                  children: [
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Name*:',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                  filled: true, fillColor: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Banner Text:',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                  filled: true, fillColor: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Category Name:',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'PRODUCTS DISPLAY',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Consumer<ProductController>(
-                  builder: ((context, value, child) {
-                    // log('${value.products[0].results?.length.toString()}');
-                    if (value.products.isNotEmpty) {
+                    itemCount: 6,
+                    itemBuilder:
+                        ((BuildContext context, int index, int realIndex) {
                       return Container(
-                          height: height * 0.3,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: value.products[0].results!.length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                child: ListTile(
-                                  title: Text(
-                                      value.products[0].results![index].name!),
-                                  leading: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        var ids = value
-                                            .products[0].results![index].id!;
-                                        if (productIds.contains(ids)) {
-                                          productIds.remove(ids);
-                                        } else {
-                                          productIds.add(ids);
-                                          isSelected = index;
-                                        }
-                                        // productIds.add(value.products[0]
-                                        //     .results![index].id!);
-
-                                        print("products=>>>>$productIds");
-                                      });
+                        margin: const EdgeInsets.only(right: 20),
+                        child: DisplayCard(
+                          id: displays[0].results![index].id!,
+                          displayName: displays[0].results![index].name!,
+                          templateName:
+                              displays[0].results![index].templateName!,
+                          image:
+                              displays[0].results![index].catalogs![0].image!,
+                          shopName: 'Shop Mohakhali',
+                          height: height,
+                          width: width,
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+                Container(
+                  width: width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          controller.previousPage();
+                        },
+                        icon: const Icon(
+                          Icons.keyboard_arrow_left_outlined,
+                          size: 40,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          controller.nextPage();
+                        },
+                        icon: const Icon(
+                          Icons.keyboard_arrow_right_outlined,
+                          size: 40,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  width: width,
+                  height: 210,
+                  color: const Color.fromARGB(255, 67, 62, 68),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Name*:',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  TextFormField(
+                                    validator: (v) {
+                                      if (v!.isEmpty) {
+                                        return "Please Enter a valid name";
+                                      } else {
+                                        return null;
+                                      }
                                     },
-                                    child: Container(
-                                      height: 60,
-                                      width: 90,
-                                      child: Image.network(
-                                        'https://media.istockphoto.com/id/1309352410/photo/cheeseburger-with-tomato-and-lettuce-on-wooden-board.jpg?s=612x612&w=0&k=20&c=lfsA0dHDMQdam2M1yvva0_RXfjAyp4gyLtx4YUJmXgg=',
+                                    onSaved: (value) {
+                                      _name = value!;
+                                    },
+                                    decoration: const InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Banner Text:',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  TextFormField(
+                                    validator: (v) {
+                                      if (v!.isEmpty) {
+                                        return "Please Enter a valid name";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    onSaved: (value) {
+                                      _templateName = value!;
+                                    },
+                                    decoration: const InputDecoration(
+                                        filled: true, fillColor: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Flexible(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Category Name:',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              TextFormField(
+                                validator: (v) {
+                                  if (v!.isEmpty) {
+                                    return "Please Enter a valid name";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  _category = value!;
+                                },
+                                decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 120,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: imgPickerStyle,
+                            onPressed: () {
+                              _getImageFromGallery();
+                            },
+                            child: catalogImage != null
+                                ? Image.file(
+                                    catalogImage!,
+                                    fit: BoxFit.fill,
+                                    width: double.infinity,
+                                  )
+                                : Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 120,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: imgPickerStyle,
+                            onPressed: () {
+                              _getVideoFromGallery();
+                            },
+                            child: catalogImage != null
+                                ? Image.file(
+                                    catalogImage!,
+                                    fit: BoxFit.fill,
+                                    width: double.infinity,
+                                  )
+                                : Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'PRODUCTS DISPLAY',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Consumer<ProductController>(
+                    builder: ((context, value, child) {
+                      // log('${value.products[0].results?.length.toString()}');
+                      if (value.products.isNotEmpty) {
+                        return Container(
+                            height: height * 0.3,
+                            child: ListView.builder(
+                              physics: ClampingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: value.products[0].results!.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                  child: ListTile(
+                                    title: Text(value
+                                        .products[0].results![index].name!),
+                                    leading: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          var ids = value
+                                              .products[0].results![index].id!;
+                                          if (productIds.contains(ids)) {
+                                            productIds.remove(ids);
+                                          } else {
+                                            productIds.add(ids);
+                                            isSelected = index;
+                                          }
+                                          // productIds.add(value.products[0]
+                                          //     .results![index].id!);
+
+                                          print("products=>>>>$productIds");
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 60,
+                                        width: 90,
+                                        child: Image.network(
+                                            'https://www.safefood.net/getmedia/d81f679f-a5bc-4a16-a592-248d3b1dc803/burger_1.jpg?width=1280&height=720&ext=.jpg'),
                                       ),
                                     ),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: Icon(
-                                      Icons.done,
-                                      color: isSelected == index
-                                          ? Colors.blue
-                                          : null,
+                                    trailing: IconButton(
+                                      icon: Icon(
+                                        Icons.done,
+                                        color: isSelected == index
+                                            ? Colors.blue
+                                            : null,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          productIds.remove(value
+                                              .products[0].results![index].id);
+                                        });
+                                      },
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        productIds.remove(value
-                                            .products[0].results![index].id);
-                                      });
-                                    },
                                   ),
-                                ),
-                              );
-                            },
-                          ));
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  }),
+                                );
+                              },
+                            ));
+                      } else {
+                        return const CircularProgressIndicator();
+                      }
+                    }),
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  width: width * 0.9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: buttonStyleRed,
+                        onPressed: () {},
+                        child: const Text(
+                          'Dashboard',
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: buttonStyleBlack,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => CreateProduct()),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Create Product',
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: buttonStyleBlack,
+                        onPressed: () {},
+                        child: const Text(
+                          'Logout',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _getImageFromGallery() async {
+    XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        catalogImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  void _getVideoFromGallery() async {
+    XFile? filepick = await picker.pickVideo(source: ImageSource.gallery);
+    if (filepick != null) {
+      setState(() {
+        _catalogVideo = File(filepick.path);
+      });
+    }
   }
 }
