@@ -136,7 +136,10 @@ class DisplayCard extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: buttonStyleBlack,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed(ViewDisplay.routeName, arguments: id);
+                  },
                   child: const Text(
                     'View Display',
                   ),

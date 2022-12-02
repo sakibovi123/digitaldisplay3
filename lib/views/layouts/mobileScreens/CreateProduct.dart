@@ -387,22 +387,40 @@ class _CreateProductState extends State<CreateProduct> {
                   width: width,
                   height: 700,
                   child: Consumer<ProductController>(
-                    builder: (context, value, child) => GridView.count(
-                      scrollDirection: Axis.vertical,
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 30,
-                      childAspectRatio: 16 / 9,
-                      children: List.generate(
-                          value.products.isNotEmpty
-                              ? value.products[0].results!.length
-                              : 0, (i) {
+                    builder: (context, value, child) => GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: value.products.isNotEmpty
+                          ? value.products[0].results!.length
+                          : 0,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                      ),
+                      itemBuilder: (BuildContext context, int i) {
                         return ProductCard(
-                            name: value.products[0].results![i].name!,
-                            price: value.products[0].results![i].price!,
-                            image: value.products[0].results![i].image!,
-                            id: value.products[0].results![i].id!);
-                      }),
+                          name: value.products[0].results![i].name!,
+                          price: value.products[0].results![i].price!,
+                          image: value.products[0].results![i].image!,
+                          id: value.products[0].results![i].id!,
+                        );
+                      },
+                      // scrollDirection: Axis.vertical,
+                      // physics: NeverScrollableScrollPhysics(),
+                      // crossAxisCount: 4,
+                      // crossAxisSpacing: 20,
+                      // mainAxisSpacing: 30,
+                      // childAspectRatio: 16 / 9,
+                      // children: List.generate(
+                      //     value.products.isNotEmpty
+                      //         ? value.products[0].results!.length
+                      //         : 0, (i) {
+                      //   return ProductCard(
+                      //       name: value.products[0].results![i].name!,
+                      //       price: value.products[0].results![i].price!,
+                      //       image: value.products[0].results![i].image!,
+                      //       id: value.products[0].results![i].id!);
+                      // }),
                     ),
                   ),
                 ),

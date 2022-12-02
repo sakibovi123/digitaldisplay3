@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
           CreateProduct.routeName: (ctx) => const CreateProduct(),
           EditDisplay.routeName: (ctx) => const EditDisplay(),
           // EditProduct.routeName: (ctx) => const EditProduct(),
+          ViewDisplay.routeName: (ctx) => const ViewDisplay(),
         },
       ),
     );

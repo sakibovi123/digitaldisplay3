@@ -51,99 +51,202 @@ class _HomeState extends State<Home> {
         child: CircularProgressIndicator(),
       );
     } else {
-      return Scaffold(
-        body: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5.0,
-          ),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 30,
+      return LayoutBuilder(builder: (context, constraints) {
+        if (constraints.maxWidth > 600) {
+          return Scaffold(
+            body: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 5.0,
               ),
-              Align(
-                alignment: Alignment.topRight,
-                child: ElevatedButton(
-                  style: buttonStyleBlack,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => CreateDisplay()),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Create Display',
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-              ),
-              Expanded(
-                child: GridView.builder(
-                  itemCount: displays[0].results!.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 20,
-                    mainAxisExtent: 330,
-                    mainAxisSpacing: 30,
-                    childAspectRatio: 16 / 9,
-                  ),
-                  itemBuilder: ((context, index) {
-                    return DisplayCard(
-                      id: displays[0].results![index].id!,
-                      displayName: displays[0].results![index].name!,
-                      templateName: displays[0].results![index].templateName!,
-                      image: displays[0].results![index].catalogs![0].image!,
-                      shopName: 'Shop Mohakhali',
-                      height: height,
-                      width: width,
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: width * 0.9,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: buttonStyleRed,
-                      onPressed: () {},
-                      child: const Text(
-                        'Dashboard',
-                      ),
-                    ),
-                    ElevatedButton(
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
                       style: buttonStyleBlack,
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => const CreateProduct()),
+                            builder: ((context) => CreateDisplay()),
                           ),
                         );
                       },
                       child: const Text(
-                        'Create Product',
+                        'Create Display',
                       ),
                     ),
-                    ElevatedButton(
-                      style: buttonStyleBlack,
-                      onPressed: () {},
-                      child: const Text(
-                        'Logout',
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                      itemCount: displays[0].results!.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 20,
+                        mainAxisExtent: 330,
+                        mainAxisSpacing: 30,
+                        childAspectRatio: 16 / 9,
                       ),
+                      itemBuilder: ((context, index) {
+                        return DisplayCard(
+                          id: displays[0].results![index].id!,
+                          displayName: displays[0].results![index].name!,
+                          templateName:
+                              displays[0].results![index].templateName!,
+                          image:
+                              displays[0].results![index].catalogs![0].image!,
+                          shopName: 'Shop Mohakhali',
+                          height: height,
+                          width: width,
+                        );
+                      }),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: width * 0.9,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          style: buttonStyleRed,
+                          onPressed: () {},
+                          child: const Text(
+                            'Dashboard',
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => const CreateProduct()),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Create Product',
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {},
+                          child: const Text(
+                            'Logout',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      );
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 5.0,
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
+                      style: buttonStyleBlack,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => CreateDisplay()),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Create Display',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemExtent: 330,
+                      itemCount: displays[0].results!.length,
+                      itemBuilder: ((context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: DisplayCard(
+                            id: displays[0].results![index].id!,
+                            displayName: displays[0].results![index].name!,
+                            templateName:
+                                displays[0].results![index].templateName!,
+                            image:
+                                displays[0].results![index].catalogs![0].image!,
+                            shopName: 'Shop Mohakhali',
+                            height: height,
+                            width: width,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: width * 0.9,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          style: buttonStyleRed,
+                          onPressed: () {},
+                          child: const Text(
+                            'Dashboard',
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => const CreateProduct()),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Create Product',
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {},
+                          child: const Text(
+                            'Logout',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      });
     }
   }
 }

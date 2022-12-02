@@ -29,7 +29,7 @@ class ProductCard extends StatelessWidget {
     );
     return Container(
       width: width,
-      height: 330,
+      height: 350,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -117,7 +117,7 @@ class ProductCard extends StatelessWidget {
                     color: Colors.white.withOpacity(0.8),
                     child: Text(
                       name,
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                   Container(

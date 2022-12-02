@@ -16,6 +16,6 @@ export '../layouts/tv_screens/HomeTv.dart';
 export '../layouts/tv_screens/CreateDisplayTv.dart';
 export '../layouts/tv_screens/CreateProductTv.dart';
 
-
+export '../layouts/mobileScreens/ViewDisplay.dart';
 export '../layouts/mobile_screens/EditProduct.dart';
-
+export '../layouts/widgets/LoginButton.dart';
