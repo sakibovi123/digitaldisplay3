@@ -1,4 +1,5 @@
 import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/EditProduct.dart';
 import 'package:digitaldisplay3/views/layouts/mobileScreens/Login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName: (ctx) => const LoginScreen(),
           CreateProduct.routeName: (ctx) => const CreateProduct(),
           EditDisplay.routeName: (ctx) => const EditDisplay(),
-          // EditProduct.routeName: (ctx) => const EditProduct(),
+          EditProduct.routeName: (ctx) => const EditProduct(),
           ViewDisplay.routeName: (ctx) => const ViewDisplay(),
         },
       ),

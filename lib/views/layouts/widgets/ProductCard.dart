@@ -1,4 +1,5 @@
 import 'package:digitaldisplay3/views/export/Export.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/EditProduct.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -27,116 +28,245 @@ class ProductCard extends StatelessWidget {
       shape: const StadiumBorder(),
       minimumSize: const Size(50, 40),
     );
-    return Container(
-      width: width,
-      height: 350,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage('https://digital-display.betafore.com/$image'),
-        ),
-      ),
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: width * 0.9,
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 208, 87, 80)
-                                .withOpacity(0.85),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40),
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth > 600) {
+        return Container(
+          width: width,
+          height: 350,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image:
+                  NetworkImage('https://digital-display.betafore.com/$image'),
+            ),
+          ),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: width * 0.9,
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 208, 87, 80)
+                                    .withOpacity(0.85),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(40),
+                                  bottomRight: Radius.circular(40),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              height: 80,
+                              width: 75,
+                              child: Text(
+                                '\$${price}',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
-                          alignment: Alignment.center,
-                          height: 80,
-                          width: 75,
-                          child: Text(
-                            '\$${price}',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
+                            SizedBox(
+                              width: 10,
                             ),
-                          ),
+                            Text(
+                              '\$40',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.lineThrough,
+                                decorationThickness: 2.5,
+                                decorationColor: Colors.blue.shade900,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          '\$40',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.lineThrough,
-                            decorationThickness: 2.5,
-                            decorationColor: Colors.blue.shade900,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.close,
-                        color: Colors.black,
                       ),
-                    ),
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: width * 0.95,
+                  height: 90,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 5,
+                        ),
+                        margin: EdgeInsets.only(left: 3),
+                        height: 40,
+                        width: 200,
+                        color: Colors.white.withOpacity(0.8),
+                        child: Text(
+                          name,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 5),
+                        child: ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                                EditProduct.routeName,
+                                arguments: id);
+                          },
+                          child: Text('Edit product'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Container(
-              alignment: Alignment.center,
-              width: width * 0.95,
-              height: 90,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 5,
-                    ),
-                    margin: EdgeInsets.only(left: 3),
-                    height: 40,
-                    width: 200,
-                    color: Colors.white.withOpacity(0.8),
-                    child: Text(
-                      name,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 5),
-                    child: ElevatedButton(
-                      style: buttonStyleBlack,
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(EditProduct.routeName, arguments: id);
-                      },
-                      child: Text('Edit product'),
-                    ),
-                  ),
-                ],
+          ),
+        );
+      } else {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          height: 200,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(94, 158, 158, 158),
+                offset: Offset(1, 3),
+                blurRadius: 3,
+                spreadRadius: 1,
               ),
+            ],
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image:
+                  NetworkImage('https://digital-display.betafore.com/$image'),
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: width * 0.9,
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 208, 87, 80)
+                                    .withOpacity(0.85),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(40),
+                                  bottomRight: Radius.circular(40),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              height: 80,
+                              width: 75,
+                              child: Text(
+                                '\$${price}',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              '\$40',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.lineThrough,
+                                decorationThickness: 2.5,
+                                decorationColor: Colors.blue.shade900,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: width,
+                  height: 90,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 5,
+                        ),
+                        margin: EdgeInsets.only(left: 3),
+                        height: 70,
+                        width: 200,
+                        color: Colors.white.withOpacity(0.8),
+                        child: Text(
+                          name,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 5),
+                        child: ElevatedButton(
+                          style: buttonStyleBlack,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                                EditProduct.routeName,
+                                arguments: id);
+                          },
+                          child: Text('Edit product'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    });
   }
 }
