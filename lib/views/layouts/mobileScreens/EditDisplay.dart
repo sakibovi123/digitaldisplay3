@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/Login.dart';
 import 'package:digitaldisplay3/views/layouts/widgets/DisplayCard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -928,7 +929,14 @@ class _EditDisplayState extends State<EditDisplay> {
                           ),
                           ElevatedButton(
                             style: buttonStyleBlack,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => LoginScreen()),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Logout',
                             ),

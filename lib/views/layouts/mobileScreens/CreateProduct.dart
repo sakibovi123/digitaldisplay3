@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/Login.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -835,7 +836,14 @@ class _CreateProductState extends State<CreateProduct> {
                           ),
                           ElevatedButton(
                             style: buttonStyleBlack,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => LoginScreen()),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Logout',
                             ),

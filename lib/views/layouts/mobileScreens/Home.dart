@@ -1,5 +1,6 @@
 import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateDisplay.dart';
 import 'package:digitaldisplay3/views/layouts/mobileScreens/CreateProduct.dart';
+import 'package:digitaldisplay3/views/layouts/mobileScreens/Login.dart';
 import 'package:flutter/material.dart';
 import '../../export/Export.dart';
 import 'package:provider/provider.dart';
@@ -233,7 +234,14 @@ class _HomeState extends State<Home> {
                         ),
                         ElevatedButton(
                           style: buttonStyleBlack,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => const LoginScreen()),
+                              ),
+                            );
+                          },
                           child: const Text(
                             'Logout',
                           ),
