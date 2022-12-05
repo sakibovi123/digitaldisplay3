@@ -23,18 +23,18 @@ class ViewDisplay extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth > 600) {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 131, 50, 46),
+          backgroundColor: const Color.fromARGB(255, 131, 50, 46),
           appBar: AppBar(
             backgroundColor: Colors.black,
             elevation: 0,
-            title: Text('View Display'),
+            title: const Text('View Display'),
           ),
           body: GridView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemCount: display.products!.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 20.0,
               mainAxisSpacing: 20.0,
@@ -44,13 +44,13 @@ class ViewDisplay extends StatelessWidget {
                 width: width * 0.4,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       alignment: Alignment.center,
                       width: width * 0.35,
-                      child: Text(
+                      child: const Text(
                         'Starter',
                         style: TextStyle(
                           fontSize: 30,
@@ -59,7 +59,7 @@ class ViewDisplay extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -73,7 +73,7 @@ class ViewDisplay extends StatelessWidget {
                                   width: width * 0.08,
                                   child: Text(
                                     display.products![index].price!,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
@@ -81,7 +81,7 @@ class ViewDisplay extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     border: Border(
                                       left: BorderSide(
                                         width: 1,
@@ -94,20 +94,22 @@ class ViewDisplay extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(left: 10),
+                                          margin:
+                                              const EdgeInsets.only(left: 10),
                                           width: width * 0.2,
                                           child: Text(
                                             display.products![index].name!,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 22,
                                               fontWeight: FontWeight.w500,
                                               color: Colors.white,
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
+
                                         // Container(
                                         //   margin: EdgeInsets.only(left: 10),
                                         //   width: width * 0.2,
@@ -270,15 +272,15 @@ class ViewDisplay extends StatelessWidget {
         );
       } else {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 131, 50, 46),
+          backgroundColor: const Color.fromARGB(255, 131, 50, 46),
           appBar: AppBar(
             backgroundColor: Colors.black,
             elevation: 0,
-            title: Text('View Display'),
+            title: const Text('View Display'),
           ),
           body: ListView.builder(
             scrollDirection: Axis.vertical,
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemCount: 4,
             itemBuilder: ((context, index) {
               return Column(
@@ -286,13 +288,13 @@ class ViewDisplay extends StatelessWidget {
                   Container(
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
                           alignment: Alignment.center,
                           width: width,
-                          child: Text(
+                          child: const Text(
                             'Starter',
                             style: TextStyle(
                               fontSize: 32,
@@ -301,7 +303,7 @@ class ViewDisplay extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Container(
@@ -311,7 +313,7 @@ class ViewDisplay extends StatelessWidget {
                             children: [
                               Container(
                                 width: width * 0.17,
-                                child: Text(
+                                child: const Text(
                                   '\$100',
                                   style: TextStyle(
                                     fontSize: 22,
@@ -321,7 +323,7 @@ class ViewDisplay extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(
                                     left: BorderSide(
                                       color: Colors.white,
@@ -333,9 +335,9 @@ class ViewDisplay extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(left: 5),
+                                      margin: const EdgeInsets.only(left: 5),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Big Green Salad',
                                         style: TextStyle(
                                           fontSize: 20,
@@ -344,13 +346,13 @@ class ViewDisplay extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Container(
-                                      margin: EdgeInsets.only(left: 5),
+                                      margin: const EdgeInsets.only(left: 5),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Lorem ipsum dolor sit amet consectetuer adipiscing',
                                         style: TextStyle(
                                           fontSize: 16,
@@ -371,7 +373,7 @@ class ViewDisplay extends StatelessWidget {
                             children: [
                               Container(
                                 width: width * 0.17,
-                                child: Text(
+                                child: const Text(
                                   '\$100',
                                   style: TextStyle(
                                     fontSize: 22,
@@ -381,7 +383,7 @@ class ViewDisplay extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(
                                     left: BorderSide(
                                       color: Colors.white,
@@ -393,12 +395,12 @@ class ViewDisplay extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(
+                                      margin: const EdgeInsets.only(
                                         left: 5,
                                         top: 30,
                                       ),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Vegan Kebab',
                                         style: TextStyle(
                                           fontSize: 20,
@@ -407,13 +409,13 @@ class ViewDisplay extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Container(
-                                      margin: EdgeInsets.only(left: 5),
+                                      margin: const EdgeInsets.only(left: 5),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Lorem ipsum dolor sit amet consectetuer adipiscing',
                                         style: TextStyle(
                                           fontSize: 16,
@@ -434,7 +436,7 @@ class ViewDisplay extends StatelessWidget {
                             children: [
                               Container(
                                 width: width * 0.17,
-                                child: Text(
+                                child: const Text(
                                   '\$100',
                                   style: TextStyle(
                                     fontSize: 22,
@@ -444,7 +446,7 @@ class ViewDisplay extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   border: Border(
                                     left: BorderSide(
                                       color: Colors.white,
@@ -456,12 +458,12 @@ class ViewDisplay extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(
+                                      margin: const EdgeInsets.only(
                                         left: 5,
                                         top: 30,
                                       ),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Red Spicy Onion Ring',
                                         style: TextStyle(
                                           fontSize: 20,
@@ -470,13 +472,13 @@ class ViewDisplay extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Container(
-                                      margin: EdgeInsets.only(left: 5),
+                                      margin: const EdgeInsets.only(left: 5),
                                       width: width * 0.65,
-                                      child: Text(
+                                      child: const Text(
                                         'Lorem ipsum dolor sit amet consectetuer adipiscing',
                                         style: TextStyle(
                                           fontSize: 16,
@@ -493,7 +495,7 @@ class ViewDisplay extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
                 ],
