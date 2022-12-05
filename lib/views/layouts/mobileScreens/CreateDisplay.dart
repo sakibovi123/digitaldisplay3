@@ -318,7 +318,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Flexible(
@@ -393,9 +393,9 @@ class _CreateDisplayState extends State<CreateDisplay> {
                                 onPressed: () {
                                   _getVideoFromGallery();
                                 },
-                                child: catalogImage != null
+                                child: _catalogVideo != null
                                     ? Image.file(
-                                        catalogImage!,
+                                        _catalogVideo!,
                                         fit: BoxFit.fill,
                                         width: double.infinity,
                                       )
@@ -574,7 +574,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
             toolbarHeight: 40,
           ),
           body: SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Container(
               margin: const EdgeInsets.only(left: 5, right: 5, bottom: 15),
               child: Form(
@@ -650,7 +650,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       width: width,
-                      height: 210,
+                      height: 235,
                       color: const Color.fromARGB(255, 67, 62, 68),
                       child: Column(
                         children: [
@@ -720,8 +720,9 @@ class _CreateDisplayState extends State<CreateDisplay> {
                                           _templateName = value!;
                                         },
                                         decoration: const InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -729,7 +730,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Flexible(
@@ -804,9 +805,9 @@ class _CreateDisplayState extends State<CreateDisplay> {
                                 onPressed: () {
                                   _getVideoFromGallery();
                                 },
-                                child: catalogImage != null
+                                child: _catalogVideo != null
                                     ? Image.file(
-                                        catalogImage!,
+                                        _catalogVideo!,
                                         fit: BoxFit.fill,
                                         width: double.infinity,
                                       )
@@ -905,10 +906,10 @@ class _CreateDisplayState extends State<CreateDisplay> {
                       child: ElevatedButton(
                         style: buttonStyleBlack,
                         onPressed: _addDisplay,
-                        child: Text('Create Display'),
+                        child: const Text('Create Display'),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -929,7 +930,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: ((context) => CreateProduct()),
+                                  builder: ((context) => const CreateProduct()),
                                 ),
                               );
                             },
@@ -943,7 +944,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: ((context) => LoginScreen()),
+                                  builder: ((context) => const LoginScreen()),
                                 ),
                               );
                             },

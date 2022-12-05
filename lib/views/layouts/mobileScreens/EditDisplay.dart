@@ -394,9 +394,9 @@ class _EditDisplayState extends State<EditDisplay> {
                                 onPressed: () {
                                   _getVideoFromGallery();
                                 },
-                                child: catalogImage != null
+                                child: _catalogVideo != null
                                     ? Image.file(
-                                        catalogImage!,
+                                        _catalogVideo!,
                                         fit: BoxFit.fill,
                                         width: double.infinity,
                                       )
@@ -805,14 +805,15 @@ class _EditDisplayState extends State<EditDisplay> {
                                 onPressed: () {
                                   _getVideoFromGallery();
                                 },
-                                child: catalogImage != null
+                                child: _catalogVideo != null
                                     ? Image.file(
-                                        catalogImage!,
+                                        _catalogVideo!,
                                         fit: BoxFit.fill,
                                         width: double.infinity,
                                       )
                                     : Image.network(
-                                        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"),
+                                        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png",
+                                      ),
                               ),
                             ),
                           ),
