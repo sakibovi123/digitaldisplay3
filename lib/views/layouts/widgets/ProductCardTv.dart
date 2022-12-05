@@ -2,12 +2,12 @@ import 'package:digitaldisplay3/views/export/Export.dart';
 import 'package:digitaldisplay3/views/layouts/mobileScreens/EditProduct.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCardTv extends StatelessWidget {
   final int id;
   final String name;
   final String price;
   final String image;
-  const ProductCard(
+  const ProductCardTv(
       {super.key,
       required this.id,
       required this.name,
@@ -28,19 +28,11 @@ class ProductCard extends StatelessWidget {
       shape: const StadiumBorder(),
       minimumSize: const Size(50, 40),
     );
+
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 200,
+      width: width,
+      height: 350,
       decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(94, 158, 158, 158),
-            offset: Offset(1, 3),
-            blurRadius: 3,
-            spreadRadius: 1,
-          ),
-        ],
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage('https://digital-display.betafore.com/$image'),
@@ -110,10 +102,10 @@ class ProductCard extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              width: width,
+              width: width * 0.95,
               height: 90,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     alignment: Alignment.center,
@@ -122,7 +114,7 @@ class ProductCard extends StatelessWidget {
                       vertical: 5,
                     ),
                     margin: EdgeInsets.only(left: 3),
-                    height: 70,
+                    height: 40,
                     width: 200,
                     color: Colors.white.withOpacity(0.8),
                     child: Text(

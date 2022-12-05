@@ -403,7 +403,7 @@ class _CreateProductState extends State<CreateProduct> {
                             mainAxisSpacing: 20.0,
                           ),
                           itemBuilder: (BuildContext context, int i) {
-                            return ProductCard(
+                            return ProductCardTv(
                               name: value.products[0].results![i].name!,
                               price: value.products[0].results![i].price!,
                               image: value.products[0].results![i].image!,

@@ -19,3 +19,4 @@ export '../layouts/tv_screens/CreateProductTv.dart';
 export '../layouts/mobileScreens/ViewDisplay.dart';
 // export '../layouts/mobile_screens/EditProduct.dart';
 export '../layouts/widgets/LoginButton.dart';
+export '../layouts/widgets/ProductCardTv.dart';

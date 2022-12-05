@@ -1489,3 +1489,469 @@
 //     }
 //   }
 // }
+
+
+// Container(
+//         child: Column(
+//           children: [
+//             SizedBox(
+//               height: 20,
+//             ),
+//             Container(
+//               alignment: Alignment.center,
+//               width: width,
+//               child: Text(
+//                 'Starter',
+//                 style: TextStyle(
+//                   fontSize: 32,
+//                   fontWeight: FontWeight.w500,
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//             SizedBox(
+//               height: 15,
+//             ),
+//             Container(
+//               width: width,
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Container(
+//                     width: width * 0.17,
+//                     child: Text(
+//                       '\$100',
+//                       style: TextStyle(
+//                         fontSize: 22,
+//                         fontWeight: FontWeight.w500,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                       border: Border(
+//                         left: BorderSide(
+//                           color: Colors.white,
+//                           width: 1.5,
+//                         ),
+//                       ),
+//                     ),
+//                     width: width * 0.75,
+//                     child: Column(
+//                       children: [
+//                         Container(
+//                           margin: EdgeInsets.only(left: 5),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Big Green Salad',
+//                             style: TextStyle(
+//                               fontSize: 20,
+//                               fontWeight: FontWeight.w500,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Container(
+//                           margin: EdgeInsets.only(left: 5),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                             style: TextStyle(
+//                               fontSize: 16,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             Container(
+//               width: width,
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Container(
+//                     width: width * 0.17,
+//                     child: Text(
+//                       '\$100',
+//                       style: TextStyle(
+//                         fontSize: 22,
+//                         fontWeight: FontWeight.w500,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                       border: Border(
+//                         left: BorderSide(
+//                           color: Colors.white,
+//                           width: 1.5,
+//                         ),
+//                       ),
+//                     ),
+//                     width: width * 0.75,
+//                     child: Column(
+//                       children: [
+//                         Container(
+//                           margin: EdgeInsets.only(
+//                             left: 5,
+//                             top: 30,
+//                           ),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Vegan Kebab',
+//                             style: TextStyle(
+//                               fontSize: 20,
+//                               fontWeight: FontWeight.w500,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Container(
+//                           margin: EdgeInsets.only(left: 5),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                             style: TextStyle(
+//                               fontSize: 16,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             Container(
+//               width: width,
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Container(
+//                     width: width * 0.17,
+//                     child: Text(
+//                       '\$100',
+//                       style: TextStyle(
+//                         fontSize: 22,
+//                         fontWeight: FontWeight.w500,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                       border: Border(
+//                         left: BorderSide(
+//                           color: Colors.white,
+//                           width: 1.5,
+//                         ),
+//                       ),
+//                     ),
+//                     width: width * 0.75,
+//                     child: Column(
+//                       children: [
+//                         Container(
+//                           margin: EdgeInsets.only(
+//                             left: 5,
+//                             top: 30,
+//                           ),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Red Spicy Onion Ring',
+//                             style: TextStyle(
+//                               fontSize: 20,
+//                               fontWeight: FontWeight.w500,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(
+//                           height: 10,
+//                         ),
+//                         Container(
+//                           margin: EdgeInsets.only(left: 5),
+//                           width: width * 0.65,
+//                           child: Text(
+//                             'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                             style: TextStyle(
+//                               fontSize: 16,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+
+
+
+
+
+// Scaffold(
+//       backgroundColor: Color.fromARGB(255, 131, 50, 46),
+//       appBar: AppBar(
+//         backgroundColor: Colors.black,
+//         elevation: 0,
+//         title: Text('View Display'),
+//       ),
+//       body: ListView.builder(
+//         scrollDirection: Axis.vertical,
+//         physics: ClampingScrollPhysics(),
+//         itemCount: 4,
+//         itemBuilder: ((context, index) {
+//           return Column(
+//             children: [
+//               Container(
+//                 child: Column(
+//                   children: [
+//                     SizedBox(
+//                       height: 20,
+//                     ),
+//                     Container(
+//                       alignment: Alignment.center,
+//                       width: width,
+//                       child: Text(
+//                         'Starter',
+//                         style: TextStyle(
+//                           fontSize: 32,
+//                           fontWeight: FontWeight.w500,
+//                           color: Colors.white,
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(
+//                       height: 15,
+//                     ),
+//                     Container(
+//                       width: width,
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Container(
+//                             width: width * 0.17,
+//                             child: Text(
+//                               '\$100',
+//                               style: TextStyle(
+//                                 fontSize: 22,
+//                                 fontWeight: FontWeight.w500,
+//                                 color: Colors.white,
+//                               ),
+//                             ),
+//                           ),
+//                           Container(
+//                             decoration: BoxDecoration(
+//                               border: Border(
+//                                 left: BorderSide(
+//                                   color: Colors.white,
+//                                   width: 1.5,
+//                                 ),
+//                               ),
+//                             ),
+//                             width: width * 0.75,
+//                             child: Column(
+//                               children: [
+//                                 Container(
+//                                   margin: EdgeInsets.only(left: 5),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Big Green Salad',
+//                                     style: TextStyle(
+//                                       fontSize: 20,
+//                                       fontWeight: FontWeight.w500,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 SizedBox(
+//                                   height: 10,
+//                                 ),
+//                                 Container(
+//                                   margin: EdgeInsets.only(left: 5),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                                     style: TextStyle(
+//                                       fontSize: 16,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                     Container(
+//                       width: width,
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Container(
+//                             width: width * 0.17,
+//                             child: Text(
+//                               '\$100',
+//                               style: TextStyle(
+//                                 fontSize: 22,
+//                                 fontWeight: FontWeight.w500,
+//                                 color: Colors.white,
+//                               ),
+//                             ),
+//                           ),
+//                           Container(
+//                             decoration: BoxDecoration(
+//                               border: Border(
+//                                 left: BorderSide(
+//                                   color: Colors.white,
+//                                   width: 1.5,
+//                                 ),
+//                               ),
+//                             ),
+//                             width: width * 0.75,
+//                             child: Column(
+//                               children: [
+//                                 Container(
+//                                   margin: EdgeInsets.only(
+//                                     left: 5,
+//                                     top: 30,
+//                                   ),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Vegan Kebab',
+//                                     style: TextStyle(
+//                                       fontSize: 20,
+//                                       fontWeight: FontWeight.w500,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 SizedBox(
+//                                   height: 10,
+//                                 ),
+//                                 Container(
+//                                   margin: EdgeInsets.only(left: 5),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                                     style: TextStyle(
+//                                       fontSize: 16,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                     Container(
+//                       width: width,
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Container(
+//                             width: width * 0.17,
+//                             child: Text(
+//                               '\$100',
+//                               style: TextStyle(
+//                                 fontSize: 22,
+//                                 fontWeight: FontWeight.w500,
+//                                 color: Colors.white,
+//                               ),
+//                             ),
+//                           ),
+//                           Container(
+//                             decoration: BoxDecoration(
+//                               border: Border(
+//                                 left: BorderSide(
+//                                   color: Colors.white,
+//                                   width: 1.5,
+//                                 ),
+//                               ),
+//                             ),
+//                             width: width * 0.75,
+//                             child: Column(
+//                               children: [
+//                                 Container(
+//                                   margin: EdgeInsets.only(
+//                                     left: 5,
+//                                     top: 30,
+//                                   ),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Red Spicy Onion Ring',
+//                                     style: TextStyle(
+//                                       fontSize: 20,
+//                                       fontWeight: FontWeight.w500,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                                 SizedBox(
+//                                   height: 10,
+//                                 ),
+//                                 Container(
+//                                   margin: EdgeInsets.only(left: 5),
+//                                   width: width * 0.65,
+//                                   child: Text(
+//                                     'Lorem ipsum dolor sit amet consectetuer adipiscing',
+//                                     style: TextStyle(
+//                                       fontSize: 16,
+//                                       color: Colors.white,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+              
+//               // copy till here
+              
+//               SizedBox(
+//                 height: 60,
+//               ),
+//             ],
+//           );
+//         }),
+//       ),
+//       // Container(
+//       //   height: height,
+//       //   width: width,
+//       //   child: Stack(
+//       //     children: [
+//       //       Image.network(
+//       //         "https://digital-display.betafore.com/$displayImg",
+//       //         height: height,
+//       //         width: width,
+//       //         fit: BoxFit.cover,
+//       //       ),
+//       //     ],
+//       //   ),
+//       // ),
+//     );

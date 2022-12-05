@@ -291,7 +291,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Text(
-                                        'Banner Text:',
+                                        'Template Name:',
                                         style: TextStyle(
                                           color: Colors.white,
                                         ),
@@ -702,7 +702,7 @@ class _CreateDisplayState extends State<CreateDisplay> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Text(
-                                        'Banner Text:',
+                                        'Template Name:',
                                         style: TextStyle(
                                           color: Colors.white,
                                         ),
@@ -899,6 +899,17 @@ class _CreateDisplayState extends State<CreateDisplay> {
                           }
                         }),
                       ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        style: buttonStyleBlack,
+                        onPressed: _addDisplay,
+                        child: Text('Create Display'),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Container(
                       width: width * 0.9,
